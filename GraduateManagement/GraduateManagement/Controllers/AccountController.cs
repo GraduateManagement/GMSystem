@@ -57,7 +57,10 @@ namespace GraduateManagement.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
-            ViewBag.ReturnUrl = returnUrl;
+            if (returnUrl == "/")
+                ViewBag.returnUrl = "/Home/Index";
+            else 
+                ViewBag.ReturnUrl = returnUrl;
             return View();
         }
 
@@ -66,7 +69,7 @@ namespace GraduateManagement.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
+        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl="/Home/Index")
         {
             if (!ModelState.IsValid)
             {
