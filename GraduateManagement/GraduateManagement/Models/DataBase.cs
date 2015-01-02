@@ -25,6 +25,7 @@ namespace GraduateManagement.Models
     {
         [Key]
         public int ID { get; set; }
+        public bool vital { get; set; }
         public int userID { get; set; }
         public string title { get; set; }
         public DateTime time { get; set; }
