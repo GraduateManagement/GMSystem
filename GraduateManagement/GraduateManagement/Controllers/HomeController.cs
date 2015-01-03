@@ -15,7 +15,7 @@ namespace GraduateManagement.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "毕业生服务平台，专业为您提供优质的毕业设计(论文)及答辩等信息服务，是为您解决毕业前最后一公里的得力助手！";
 
             return View();
         }
@@ -24,6 +24,10 @@ namespace GraduateManagement.Controllers
         {
             ViewBag.Message = "Your contact page.";
 
+            return View();
+        }
+        public ActionResult News(int id)
+        {
             return View();
         }
     }

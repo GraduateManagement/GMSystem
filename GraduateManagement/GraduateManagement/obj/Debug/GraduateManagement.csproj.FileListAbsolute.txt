@@ -50,6 +50,5 @@ F:\南京师范大学\计算机学院\软件工程\graduatestudio.com\GMSystem\G
 F:\南京师范大学\计算机学院\软件工程\graduatestudio.com\GMSystem\GraduateManagement\GraduateManagement\bin\Microsoft.Owin.Security.Google.xml
 F:\南京师范大学\计算机学院\软件工程\graduatestudio.com\GMSystem\GraduateManagement\GraduateManagement\bin\Microsoft.Owin.Security.Twitter.xml
 F:\南京师范大学\计算机学院\软件工程\graduatestudio.com\GMSystem\GraduateManagement\GraduateManagement\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-F:\南京师范大学\计算机学院\软件工程\graduatestudio.com\GMSystem\GraduateManagement\GraduateManagement\obj\Debug\GraduateManagement.csprojResolveAssemblyReference.cache
 F:\南京师范大学\计算机学院\软件工程\graduatestudio.com\GMSystem\GraduateManagement\GraduateManagement\obj\Debug\GraduateManagement.dll
 F:\南京师范大学\计算机学院\软件工程\graduatestudio.com\GMSystem\GraduateManagement\GraduateManagement\obj\Debug\GraduateManagement.pdb
