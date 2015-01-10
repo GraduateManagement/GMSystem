@@ -49,16 +49,15 @@ namespace GraduateManagement.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Email")]
-        [EmailAddress]
-        public string Email { get; set; }
+        [Display(Name = "用户")]
+        public string accountNum { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
-        public string Password { get; set; }
+        [Display(Name = "密码")]
+        public string password { get; set; }
 
-        [Display(Name = "Remember me?")]
+        [Display(Name = "记住密码")]
         public bool RememberMe { get; set; }
     }
 

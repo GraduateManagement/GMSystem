@@ -1,4 +1,6 @@
-﻿@{
+﻿@using GraduateManagement.Models
+@model IEnumerable<NoticesViewModel>
+@{
     ViewBag.Title = "毕业生服务平台";
 }
 
@@ -8,6 +10,18 @@
     <p class="lead" style="font-family: 微软雅黑; margin-top: 10px;">为您提供优质的毕业设计(论文)及答辩等信息服务，为您解决毕业前最后一公里的得力助手</p>
     <p><a target="_blank" href="http://www.njnu.edu.cn" style="font-family: 微软雅黑;" class="btn btn-primary btn-lg">进入南师主页 &raquo;</a></p>
 </div>
-<div style="margin-top: 0px; margin-bottom: 0px; background-color: #d0d0d0; height: auto; border-radius: 0px; " class="jumbotron">
-    
+<div style="margin-top: 0px; margin-bottom: 0px; padding-top: 10px; background-color: #d0d0d0; height: auto; border-radius: 0px; " class="jumbotron">
+    <h2 style="font-family: 微软雅黑;">通知公告</h2>
+    @foreach (var item in Model)
+    {
+        if (item.vital == true)
+        {
+            @Html.ActionLink(item.title, "News", new { id = item.newsID }, new { @class = "col-md-5", style = "color:red" })
+        }
+        else
+        {
+            @Html.ActionLink(item.title, "News", new { id = item.newsID }, new { @class = "col-md-5" })
+        }
+        <div class="col-md-3">@item.time</div>
+    }
 </div>

@@ -12,9 +12,9 @@ namespace GraduateManagement.Models
         [Key]
         public int ID { get; set; }
         public string accountNum { get; set; }
-        public string keyhash { get; set; }
+        public string password { get; set; }
         public string name { get; set; }
-        public int acdemy { get; set; }
+        public int academy { get; set; }
         public int role { get; set; }
         public string paperAddr { get; set; }
         public string attachmentAddr { get; set; }
@@ -49,9 +49,9 @@ namespace GraduateManagement.Models
         [Key]
         [Column(Order = 1)]
         public int stuID { get; set; }
-        public bool canplea { get; set; }
+        public bool canReply { get; set; }
     }
-    public class pleas
+    public class reply
     {
         [Key]
         [Column(Order = 0)]
