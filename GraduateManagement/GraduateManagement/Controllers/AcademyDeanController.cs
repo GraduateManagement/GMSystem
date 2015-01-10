@@ -9,7 +9,7 @@ namespace GraduateManagement.Controllers
     public class AcademyDeanController : Controller
     {
         // GET: Academy
-        public ActionResult Index()
+        public ActionResult Index()    //学生进展列表、审核结果
         {
             return View();
         }

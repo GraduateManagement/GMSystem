@@ -9,7 +9,7 @@ namespace GraduateManagement.Controllers
     public class StudentController : Controller
     {
         // GET: Student
-        public ActionResult Index()
+        public ActionResult Index()   //学生提交论文、附件及查看进度
         {
             return View();
         }

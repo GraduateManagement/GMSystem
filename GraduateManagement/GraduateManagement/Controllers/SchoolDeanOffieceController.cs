@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using GraduateManagement.Models;
 
 namespace GraduateManagement.Controllers
 {
     public class SchoolDeanOffieceController : Controller
     {
+        private SqlDbContext db = new SqlDbContext();
         // GET: SchoolDeanOffiece
-        public ActionResult Index()
+        public ActionResult Index()      //各学院进展列表
         {
             return View();
         }
@@ -17,7 +19,7 @@ namespace GraduateManagement.Controllers
         {
             return View();
         }
-        public ActionResult releaseNews()  //发布通知公告
+        public ActionResult releaseNews(NewsReleaseViewModel model)  //发布通知公告
         {
             return RedirectToAction("/Home/Index");
         }

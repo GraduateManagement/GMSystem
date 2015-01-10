@@ -31,6 +31,7 @@ namespace GraduateManagement.Models
         public DateTime time { get; set; }
         public string content { get; set; }
         public string attachmentAddr { get; set; }
+        public string attachmentName { get; set; }
     }
     public class authority
     {

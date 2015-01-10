@@ -3,14 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using GraduateManagement.Models;
 
 namespace GraduateManagement.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        private SqlDbContext db = new SqlDbContext();
+        public ActionResult Index()    //补充：处理通知公告的部分
         {
-            return View();
+            var notices = (from o in db.notice_table
+                         select new { o.ID, o.vital, o.title, o.time }).ToArray();
+            List<NoticesViewModel> model = new List<NoticesViewModel>();
+            for (int i = 0; i < notices.Length; i++)
+            {
+                model[i].newsID = notices[i].ID;
+                model[i].vital = notices[i].vital;
+                model[i].title = notices[i].title;
+                model[i].time = notices[i].time;
+            }
+            return View(model);
         }
 
         public ActionResult About()
@@ -22,11 +34,11 @@ namespace GraduateManagement.Controllers
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "欢迎联系我们，南师大官方联系方式如下:";
 
             return View();
         }
-        public ActionResult News(int id)
+        public ActionResult News(int id)   //新闻的具体界面，要处理自然段分段
         {
             return View();
         }

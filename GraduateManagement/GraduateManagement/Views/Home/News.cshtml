@@ -1,3 +1,16 @@
 ﻿@using GraduateManagement.Models
 @model NewsViewModel
 
+<div>
+    @{
+        <h2 style="text-align: center; font-family: 微软雅黑; ">@Model.title</h2>
+        <p style="text-align: center; ">@Model.time</p>
+        <p>@Model.content</p>
+        if (Model.attachmentAddr != null)
+        {
+            string location = "~/uploads/" + Model.attachmentAddr;
+            <p style="font-family: 微软雅黑; ">附件：</p>
+            <a href=@location>@Model.attachmentName</a>
+        }
+    }
+</div>
