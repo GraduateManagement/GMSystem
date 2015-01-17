@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using GraduateManagement.Models;
 
-namespace Se.Aee.Helpers
+namespace GraduateManagement.Attributes
 {
     public class AuthorityHelper
     {
@@ -38,21 +38,21 @@ namespace Se.Aee.Helpers
             db.SaveChanges();
         }
 
-        public int GetAuthorId(string controllerName, string actionName)
+        public int getAuthorID(string controllerName, string actionName)
         {
-            int authorId = db.authority_table.FirstOrDefault(a =>
+            int authorID = db.authority_table.FirstOrDefault(a =>
                a.actionName == actionName && a.controllerName == controllerName).ID;
-            return authorId;
+            return authorID;
         }
 
-        public ICollection<AR> GetContainRoles(string controlName, string actionName)
+        public ICollection<AR> getContainRoles(string controlName, string actionName)
         {
-            int authorID = this.GetAuthorId(controlName, actionName);
+            int authorID = this.getAuthorID(controlName, actionName);
             ICollection<AR> roleAuthorities = db.authorityRole_table.Where(r => r.authorityID == authorID).ToList();
             return roleAuthorities;
         }
 
-        public role GetRole(string accountNum)
+        public role getRole(string accountNum)
         {
             int role = db.user_table.Single(a => a.accountNum == accountNum).roleID;
             return db.role_table.Single(a => a.ID == role);

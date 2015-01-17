@@ -158,6 +158,8 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="AuthorityManagement\AuthorityFilter.cs" />
+    <Compile Include="AuthorityManagement\AuthorityHelper.cs" />
     <Compile Include="Controllers\AcademyDeanController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
