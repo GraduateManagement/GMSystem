@@ -106,3 +106,4 @@ F:\Nanjing Normal University\CS\software engineering\graduatestudio.com\GMSystem
 F:\Nanjing Normal University\CS\software engineering\graduatestudio.com\GMSystem\GraduateManagement\GraduateManagement\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 F:\Nanjing Normal University\CS\software engineering\graduatestudio.com\GMSystem\GraduateManagement\GraduateManagement\obj\Debug\GraduateManagement.dll
 F:\Nanjing Normal University\CS\software engineering\graduatestudio.com\GMSystem\GraduateManagement\GraduateManagement\obj\Debug\GraduateManagement.pdb
+F:\Nanjing Normal University\CS\software engineering\graduatestudio.com\GMSystem\GraduateManagement\GraduateManagement\obj\Debug\GraduateManagement.csprojResolveAssemblyReference.cache

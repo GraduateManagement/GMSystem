@@ -11,9 +11,11 @@ namespace GraduateManagement.Models
     {
         public DbSet<users> user_table { get; set; }
         public DbSet<notices> notice_table { get; set; }
+        public DbSet<role> role_table { get; set; }
+        public DbSet<authority> authority_table { get; set; }
+        public DbSet<AR> authorityRole_table { get; set; }
         public DbSet<directs> direct_table { get; set; }
         public DbSet<reply> reply_table { get; set; }
         public DbSet<progress> progress_table { get; set; }
-        public DbSet<authority> authority_table { get; set; }
     }
 }

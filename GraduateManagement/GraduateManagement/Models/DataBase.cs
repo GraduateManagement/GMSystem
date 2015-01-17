@@ -15,7 +15,7 @@ namespace GraduateManagement.Models
         public string password { get; set; }
         public string name { get; set; }
         public int academy { get; set; }
-        public int role { get; set; }
+        public int roleID { get; set; }
         public string paperAddr { get; set; }
         public string attachmentAddr { get; set; }
         public int progress { get; set; }
@@ -33,14 +33,27 @@ namespace GraduateManagement.Models
         public string attachmentAddr { get; set; }
         public string attachmentName { get; set; }
     }
+    public class role
+    {
+        [Key]
+        public int ID { get; set; }
+        public string name { get; set; }
+    }
     public class authority
     {
         [Key]
+        public int ID { get; set; }
+        public string controllerName { get; set; }
+        public string actionName { get; set; }
+    }
+    public class AR
+    {
+        [Key]
         [Column(Order = 0)]
-        public int role { get; set; }
+        public int roleID { get; set; }
         [Key]
         [Column(Order = 1)]
-        public int userID { get; set; }
+        public int authorityID { get; set; }
     }
     public class directs
     {
