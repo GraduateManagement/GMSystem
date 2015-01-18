@@ -4,12 +4,14 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using GraduateManagement.Models;
+using GraduateManagement.Attributes;
 
 namespace GraduateManagement.Controllers
 {
     public class HomeController : Controller
     {
         private SqlDbContext db = new SqlDbContext();
+
         public ActionResult Index()    //补充：处理通知公告的部分
         {
             var notices = (from o in db.notice_table
@@ -38,7 +40,13 @@ namespace GraduateManagement.Controllers
 
             return View();
         }
+
         public ActionResult News(int id)   //新闻的具体界面，要处理自然段分段
+        {
+            return View();
+        }
+
+        public ActionResult Error()
         {
             return View();
         }

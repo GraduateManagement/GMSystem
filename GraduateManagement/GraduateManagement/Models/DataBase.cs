@@ -21,6 +21,12 @@ namespace GraduateManagement.Models
         public int progress { get; set; }
         public double score { get; set; }
     }
+    public class academy
+    {
+        [Key]
+        public int ID { get; set; }
+        public string name { get; set; }
+    }
     public class notices
     {
         [Key]
@@ -44,7 +50,6 @@ namespace GraduateManagement.Models
         [Key]
         public int ID { get; set; }
         public string controllerName { get; set; }
-        public string actionName { get; set; }
     }
     public class AR
     {

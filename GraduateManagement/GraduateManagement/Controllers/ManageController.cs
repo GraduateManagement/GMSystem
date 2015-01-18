@@ -7,10 +7,11 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using GraduateManagement.Models;
+using GraduateManagement.Attributes;
 
 namespace GraduateManagement.Controllers
 {
-    [Authorize]
+    [AuthorityFilter]
     public class ManageController : Controller
     {
         private ApplicationSignInManager _signInManager;

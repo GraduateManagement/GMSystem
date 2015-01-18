@@ -4,10 +4,12 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using GraduateManagement.Models;
+using GraduateManagement.Attributes;
 
 namespace GraduateManagement.Controllers
 {
-    public class SchoolDeanOffieceController : Controller
+    [AuthorityFilter]
+    public class SchoolController : Controller
     {
         private SqlDbContext db = new SqlDbContext();
         // GET: SchoolDeanOffiece

@@ -10,6 +10,7 @@ namespace GraduateManagement.Models
     public class SqlDbContext : DbContext
     {
         public DbSet<users> user_table { get; set; }
+        public DbSet<academy> academy_table { get; set; }
         public DbSet<notices> notice_table { get; set; }
         public DbSet<role> role_table { get; set; }
         public DbSet<authority> authority_table { get; set; }
