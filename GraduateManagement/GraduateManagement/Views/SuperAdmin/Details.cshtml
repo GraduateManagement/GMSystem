@@ -1,0 +1,107 @@
+﻿@model GraduateManagement.Models.users
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>users</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.accountNum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.accountNum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.academy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.academy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.roleID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.roleID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.attachmentName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.attachmentName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.attachmentAddr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.attachmentAddr)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.progress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.progress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.score)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.score)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.replyAlloc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.replyAlloc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tutorAlloc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tutorAlloc)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

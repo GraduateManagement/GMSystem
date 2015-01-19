@@ -14,18 +14,21 @@ namespace GraduateManagement.Attributes
         public override void OnAuthorization(System.Web.Mvc.AuthorizationContext filterContext)
         {
             string controllerName = filterContext.ActionDescriptor.ControllerDescriptor.ControllerName;
+            if (filterContext.ActionDescriptor.ActionName == "Login" ||
+                filterContext.ActionDescriptor.ActionName == "ForgotPassword")
+                return;
             this.containedARs = this.getContainedRoles(controllerName);
-            authorityJudge(filterContext.HttpContext);
+            authorityJudge(filterContext.RequestContext.HttpContext.Request.Cookies["userName"], filterContext.HttpContext);
         }
 
         #region Helpers
-        protected void authorityJudge(HttpContextBase httpContext)
+        protected void authorityJudge(HttpCookie cookie, HttpContextBase httpContext)
         {
             if (containedARs.Count() == 0)
                 return;
-            if (httpContext.User.Identity.Name != string.Empty)
+            if (cookie.Value != string.Empty)
             {
-                int roleID = this.getRoleID(httpContext.User.Identity.Name);
+                int roleID = this.getRoleID(cookie.Value);
                 if (containedARs.Any(r => r.roleID == roleID))
                     return;
                 httpContext.Response.Redirect("~/Home/Error");

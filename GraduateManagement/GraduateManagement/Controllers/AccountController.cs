@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using GraduateManagement.Models;
 using GraduateManagement.Attributes;
+using System.Web.Security;
 
 namespace GraduateManagement.Controllers
 {
@@ -18,6 +19,7 @@ namespace GraduateManagement.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private SqlDbContext db = new SqlDbContext();
         
         public AccountController()
         {
@@ -60,7 +62,7 @@ namespace GraduateManagement.Controllers
         {
             if (returnUrl == "/" || returnUrl == null)
                 ViewBag.returnUrl = "/Home/Index";
-            else 
+            else
                 ViewBag.ReturnUrl = returnUrl;
             return View();
         }
@@ -70,29 +72,39 @@ namespace GraduateManagement.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
+        public ActionResult Login(LoginViewModel model, string returnUrl)
         {
             if (!ModelState.IsValid)
-            {
                 return View(model);
-            }
-
-            // This doesn't count login failures towards account lockout
-            // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.accountNum, model.password, model.RememberMe, shouldLockout: false);
+            var result = signIn(model.accountNum, model.password);
             switch (result)
             {
-                case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
-                case SignInStatus.LockedOut:
-                    return View("Lockout");
-                case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-                case SignInStatus.Failure:
+                case 0:
+                    return Redirect(returnUrl);
+                case 1:
                 default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
+                    ModelState.AddModelError("", "登陆失败");
                     return View(model);
             }
+        }
+        private int signIn(string userName, string password)
+        {
+            users user = db.user_table.Single(r => r.accountNum == userName && r.password == password);
+            if (user != null)
+            {
+                HttpCookie[] userCookie = new HttpCookie[3];
+                userCookie[0] = new HttpCookie("userID", Convert.ToString(user.ID));
+                userCookie[1] = new HttpCookie("userName", userName);
+                userCookie[2] = new HttpCookie("userRole", Convert.ToString(user.roleID));
+                foreach (var cookie in userCookie)
+                {
+                    cookie.Expires = DateTime.Now.AddDays(3);//3天过期
+                    Response.Cookies.Add(cookie);
+                }
+                return 0;
+            }
+            else
+                return 1;
         }
 
         //
@@ -187,7 +199,16 @@ namespace GraduateManagement.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
-            AuthenticationManager.SignOut();
+            HttpCookie hc;
+            hc = Request.Cookies["userName"];
+            hc.Expires = DateTime.Now.AddDays(-1);
+            Response.AppendCookie(hc);
+            hc = Request.Cookies["userID"];
+            hc.Expires = DateTime.Now.AddDays(-1);
+            Response.AppendCookie(hc);
+            hc = Request.Cookies["userRole"];
+            hc.Expires = DateTime.Now.AddDays(-1);
+            Response.AppendCookie(hc);
             return RedirectToAction("Index", "Home");
         }
 

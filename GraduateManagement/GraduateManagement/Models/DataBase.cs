@@ -16,15 +16,19 @@ namespace GraduateManagement.Models
         public string name { get; set; }
         public int academy { get; set; }
         public int roleID { get; set; }
-        public string paperAddr { get; set; }
+        public string attachmentName { get; set; }
         public string attachmentAddr { get; set; }
         public int progress { get; set; }
         public double score { get; set; }
+        public bool replyAlloc { get; set; }
+        public bool tutorAlloc { get; set; }
     }
     public class academy
     {
         [Key]
+        [Display(Name = "院系代号")]
         public int ID { get; set; }
+        [Display(Name = "学院")]
         public string name { get; set; }
     }
     public class notices
@@ -68,7 +72,6 @@ namespace GraduateManagement.Models
         [Key]
         [Column(Order = 1)]
         public int stuID { get; set; }
-        public bool canReply { get; set; }
     }
     public class reply
     {
@@ -78,7 +81,7 @@ namespace GraduateManagement.Models
         [Key]
         [Column(Order = 1)]
         public int stuID { get; set; }
-        public int score { get; set; }
+        public double score { get; set; }
     }
     public class progress
     {

@@ -1,16 +1,34 @@
 ﻿@using Microsoft.AspNet.Identity
-@if (Request.IsAuthenticated)
+@if (Request.Cookies["userID"] != null)
 {
+    int role = Convert.ToInt32(Request.Cookies["userRole"].Value);
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
-    @Html.AntiForgeryToken()
-
-    <ul class="nav navbar-nav navbar-right">
-        <li>
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-        </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-    </ul>
+        @Html.AntiForgeryToken()
+        <ul class="nav navbar-nav navbar-right">
+        @{
+            if (role == 1)//校教务处
+            {
+                <li>@Html.ActionLink("学院列表", "Index", "School", null, new { title = "Manage" })</li>
+                <li>@Html.ActionLink("写新闻", "writeNews", "School", null, new { title = "Manage" })</li>
+            }
+            else if (role == 2)//院教务处
+            {
+                <li>@Html.ActionLink("学生列表", "Index", "Academy", null, new { title = "Manage" })</li>
+                <li>@Html.ActionLink("添加学生", "addStudent", "Academy", null, new { title = "Manage" })</li>
+            }
+            else if (role == 3)//教师
+            {
+                <li>@Html.ActionLink("指导列表", "Direct", "Teacher", null, new { title = "Manage" })</li>
+                <li>@Html.ActionLink("答辩列表", "Reply", "Teacher", null, new { title = "Manage" })</li>
+            }
+            else if (role == 4)//学生
+            {
+                @Html.ActionLink("个人中心", "Index", "Student", null, new { title = "Manage" })
+            }
+        }
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">退出</a></li>
+        </ul>
     }
 }
 else

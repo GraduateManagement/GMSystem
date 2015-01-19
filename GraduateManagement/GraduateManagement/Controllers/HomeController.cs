@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using GraduateManagement.Models;
 using GraduateManagement.Attributes;
+using System.Web.Security;
 
 namespace GraduateManagement.Controllers
 {
@@ -30,7 +31,6 @@ namespace GraduateManagement.Controllers
         public ActionResult About()
         {
             ViewBag.Message = "毕业生服务平台，专业为您提供优质的毕业设计(论文)及答辩等信息服务，是为您解决毕业前最后一公里的得力助手！";
-
             return View();
         }
 
@@ -43,12 +43,21 @@ namespace GraduateManagement.Controllers
 
         public ActionResult News(int id)   //新闻的具体界面，要处理自然段分段
         {
-            return View();
+            var New = (from o in db.notice_table
+                       where o.ID == id
+                       select new { o.title, o.time, o.content, o.attachmentAddr, o.attachmentName }).ToArray();
+            NewsViewModel model = new NewsViewModel();
+            model.title = New[0].title;
+            model.time = New[0].time;
+            model.content = New[0].content;
+            model.attachmentAddr = New[0].attachmentAddr;
+            model.attachmentName = New[0].attachmentName;
+            return View(model);
         }
 
         public ActionResult Error()
         {
             return View();
-        }
+        }     //权限不足的错误提示界面
     }
 }

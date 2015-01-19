@@ -1,0 +1,94 @@
+﻿@model IEnumerable<GraduateManagement.Models.users>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.accountNum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.password)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.academy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.roleID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.attachmentName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.attachmentAddr)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.progress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.score)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.replyAlloc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tutorAlloc)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.accountNum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.password)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.academy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.roleID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.attachmentName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.attachmentAddr)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.progress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.score)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.replyAlloc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tutorAlloc)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>
