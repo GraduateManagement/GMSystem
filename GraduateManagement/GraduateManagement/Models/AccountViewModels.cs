@@ -28,9 +28,12 @@ namespace GraduateManagement.Models
     public class RegisterViewModel
     {
         [Required]
-        [EmailAddress]
         [Display(Name = "学号")]
         public string accountNum { get; set; }
+
+        [Required]
+        [Display(Name = "姓名")]
+        public string name { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "密码最小长度至少要6位", MinimumLength = 6)]

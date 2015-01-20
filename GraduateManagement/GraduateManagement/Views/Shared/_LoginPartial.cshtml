@@ -24,9 +24,13 @@
             }
             else if (role == 4)//学生
             {
-                @Html.ActionLink("个人中心", "Index", "Student", null, new { title = "Manage" })
+                <li>@Html.ActionLink("个人中心", "Index", "Student", null, new { title = "Manage" })</li>
             }
-        }
+            else if (role == 5)//超级管理员
+            {
+                <li>@Html.ActionLink("管理人员", "Index", "SuperAdmin", null, new { title = "Manage" })</li>
+            }
+}
             <li><a href="javascript:document.getElementById('logoutForm').submit()">退出</a></li>
         </ul>
     }

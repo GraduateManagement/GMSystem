@@ -26,7 +26,7 @@ namespace GraduateManagement.Attributes
         {
             if (containedARs.Count() == 0)
                 return;
-            if (cookie.Value != string.Empty)
+            if (cookie != null)
             {
                 int roleID = this.getRoleID(cookie.Value);
                 if (containedARs.Any(r => r.roleID == roleID))

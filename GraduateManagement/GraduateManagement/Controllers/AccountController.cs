@@ -89,13 +89,13 @@ namespace GraduateManagement.Controllers
         }
         private int signIn(string userName, string password)
         {
-            users user = db.user_table.Single(r => r.accountNum == userName && r.password == password);
-            if (user != null)
+            var user = db.user_table.Where(r => r.accountNum == userName && r.password == password).ToArray();
+            if (user != null && user.Length == 1)
             {
                 HttpCookie[] userCookie = new HttpCookie[3];
-                userCookie[0] = new HttpCookie("userID", Convert.ToString(user.ID));
+                userCookie[0] = new HttpCookie("userID", Convert.ToString(user[0].ID));
                 userCookie[1] = new HttpCookie("userName", userName);
-                userCookie[2] = new HttpCookie("userRole", Convert.ToString(user.roleID));
+                userCookie[2] = new HttpCookie("userRole", Convert.ToString(user[0].roleID));
                 foreach (var cookie in userCookie)
                 {
                     cookie.Expires = DateTime.Now.AddDays(3);//3天过期

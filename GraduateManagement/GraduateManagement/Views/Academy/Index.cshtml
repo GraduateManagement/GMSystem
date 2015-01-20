@@ -1,8 +1,58 @@
-﻿
+﻿@model IEnumerable<GraduateManagement.Models.AcademyStudentViewModel>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "学院学生列表";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2 style="font-family: 微软雅黑;">@ViewBag.Title</h2>
 
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.stuAccountNum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.stuname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.progressName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.score)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tutorAlloc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.replyAlloc)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.stuAccountNum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.stuname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.progressName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.score)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tutorAlloc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.replyAlloc)
+            </td>
+            <td>
+                @Html.ActionLink("详细", "Detail", new { id = item.stuID })
+            </td>
+        </tr>
+    }
+</table>

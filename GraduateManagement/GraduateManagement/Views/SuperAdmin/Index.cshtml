@@ -1,22 +1,19 @@
 ﻿@model IEnumerable<GraduateManagement.Models.users>
-
+@using GraduateManagement.Models;
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "用户管理";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2 style="font-family: 微软雅黑; ">@ViewBag.Title</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("新建用户", "Create", null, new { style = "font-family: 微软雅黑; text-decoration: none; " })
 </p>
 <table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.accountNum)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.password)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.name)
@@ -27,24 +24,6 @@
         <th>
             @Html.DisplayNameFor(model => model.roleID)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.attachmentName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.attachmentAddr)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.progress)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.score)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.replyAlloc)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.tutorAlloc)
-        </th>
         <th></th>
     </tr>
 
@@ -54,34 +33,18 @@
             @Html.DisplayFor(modelItem => item.accountNum)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.password)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.name)
         </td>
+        @{
+            SqlDbContext db = new SqlDbContext();
+            string academy = db.academy_table.Single(a => a.ID == item.academy).name;
+            string role = db.role_table.Single(r => r.ID == item.roleID).name;
+        }
         <td>
-            @Html.DisplayFor(modelItem => item.academy)
+            @academy
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.roleID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.attachmentName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.attachmentAddr)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.progress)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.score)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.replyAlloc)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tutorAlloc)
+            @role
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |

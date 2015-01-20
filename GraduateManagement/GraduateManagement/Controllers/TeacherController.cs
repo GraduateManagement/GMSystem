@@ -28,13 +28,16 @@ namespace GraduateManagement.Controllers
             List<DirectViewModel> model = new List<DirectViewModel>();
             for (int i = 0; i < student.Length; i++)
             {
-                var stu = db.user_table.Single(o => o.ID == student[i].stuID);
+                DirectViewModel m = new DirectViewModel();
+                var iD = student[i].stuID;
+                var stu = db.user_table.Single(o => o.ID == iD);
                 var pn = db.progress_table.Single(o => o.ID == stu.progress);
-                model[i].stuID = stu.ID;
-                model[i].stuname = stu.name;
-                model[i].stuAccountNum = stu.accountNum;
-                model[i].score = stu.score;
-                model[i].progressName = pn.progressName;
+                m.stuID = stu.ID;
+                m.stuname = stu.name;
+                m.stuAccountNum = stu.accountNum;
+                m.score = stu.score;
+                m.progressName = pn.progressName;
+                model.Add(m);
             }
             return View(model);
         }
@@ -48,13 +51,16 @@ namespace GraduateManagement.Controllers
             List<ReplyViewModel> model = new List<ReplyViewModel>();
             for (int i = 0; i < student.Length; i++)
             {
-                var stu = db.user_table.Single(o => o.ID == student[i].stuID);
+                ReplyViewModel m = new ReplyViewModel();
+                var iD = student[i].stuID;
+                var stu = db.user_table.Single(o => o.ID == iD);
                 var pn = db.progress_table.Single(o => o.ID == stu.progress);
-                model[i].stuID = stu.ID;
-                model[i].stuname = stu.name;
-                model[i].stuAccountNum = stu.accountNum;
-                model[i].score = student[i].score;
-                model[i].progressName = pn.progressName;
+                m.stuID = stu.ID;
+                m.stuname = stu.name;
+                m.stuAccountNum = stu.accountNum;
+                m.score = stu.score;
+                m.progressName = pn.progressName;
+                model.Add(m);
             }
             return View(model);
         }

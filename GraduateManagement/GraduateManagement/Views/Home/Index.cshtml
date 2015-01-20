@@ -16,13 +16,13 @@
     {
         if (item.vital == true)
         {
-            @Html.ActionLink(item.title, "News", new { id = item.newsID }, new { @class = "col-md-5", style = "color:red" })
+            @Html.ActionLink(item.title, "News", new { id = item.newsID }, new { @class = "col-md-5", style = "color:red;font-size: small" })
         }
         else
         {
-            @Html.ActionLink(item.title, "News", new { id = item.newsID }, new { @class = "col-md-5" })
+            @Html.ActionLink(item.title, "News", new { id = item.newsID }, new { @class = "col-md-5", style = "color:black;font-size: small" })
         }
-        <div class="col-md-3">@item.time</div>
+        <div class="col-md-3" style="font-size: small">@item.time</div>
         <br />
     }
 </div>

@@ -20,34 +20,39 @@ namespace GraduateManagement.Controllers
             List<AcademyStudentViewModel> model = new List<AcademyStudentViewModel>();
             var a = db.user_table.First(c => c.ID == id);
             var student = (from p in db.user_table
-                           where p.academy == a.academy && p.roleID == 1
+                           where p.academy == a.academy && p.roleID == 4
                            select p).ToArray();
             for (int i = 0; i < student.Length; i++)
             {
-                var pn = db.progress_table.Single(c => c.ID == student[i].progress);
-                var r = (from o in db.reply_table
-                         where (o.stuID == student[i].ID)
-                         select o).ToArray();
-                model[i].stuID = student[i].ID;
-                model[i].stuname = student[i].name;
-                model[i].progress = student[i].progress;
-                model[i].progressName = pn.progressName;
-                for (int j = 0; j < r.Length; j++)
-                {
-                    var t = db.user_table.Single(c => c.ID == r[j].teacherID);
-                    model[i].replyScores[j].teachername = t.name;
-                    model[i].replyScores[j].score = r[j].score;
-                }
+                AcademyStudentViewModel m = new AcademyStudentViewModel();
+                int progress = student[i].progress;
+                var pn = db.progress_table.Single(c => c.ID == progress);
+                m.stuID = student[i].ID;
+                m.stuname = student[i].name;
+                m.progressName = pn.progressName;
+                m.stuAccountNum = student[i].accountNum;
+                m.score = student[i].score;
+                m.tutorAlloc = student[i].tutorAlloc;
+                m.replyAlloc = student[i].replyAlloc;
+                model.Add(m);
             }
             return View(model);
+        }
+
+        public ActionResult Detail(int id)
+        {
+            var student = db.user_table.Single(c => c.ID == id);
+            var pn = db.progress_table.Single(o => o.ID == student.progress);
+
+            return View();
         }
 
         public bool DoneDirect(int id)  //院教务处审核通过
         {
             users u = db.user_table.First(c => c.ID == id);
-            if (u.progress == 3)
+            if (u.progress == 4)
             {
-                u.progress = 4;     //修改进度为“院教务处审核通过,等待校教务处审核”
+                u.progress = 6;     //修改进度为“院教务处审核通过,等待校教务处审核”
                 db.SaveChanges();
             }
             return true;
@@ -214,6 +219,19 @@ namespace GraduateManagement.Controllers
         {
             if (ModelState.IsValid)
             {
+                int id = Convert.ToInt32(Request.Cookies["userID"].Value);
+                int academy = db.user_table.Single(u => u.ID == id).academy;
+                users user = new users();
+                user.name = model.name;
+                user.accountNum = model.accountNum;
+                user.password = model.password;
+                user.academy = academy;
+                user.roleID = 4;
+                user.progress = 1;
+                user.tutorAlloc = false;
+                user.replyAlloc = false;
+                db.user_table.Add(user);
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(model);

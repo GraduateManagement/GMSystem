@@ -20,10 +20,12 @@ namespace GraduateManagement.Controllers
             List<NoticesViewModel> model = new List<NoticesViewModel>();
             for (int i = 0; i < notices.Length; i++)
             {
-                model[i].newsID = notices[i].ID;
-                model[i].vital = notices[i].vital;
-                model[i].title = notices[i].title;
-                model[i].time = notices[i].time;
+                NoticesViewModel m = new NoticesViewModel();
+                m.newsID = notices[i].ID;
+                m.vital = notices[i].vital;
+                m.title = notices[i].title;
+                m.time = notices[i].time;
+                model.Add(m);
             }
             return View(model);
         }

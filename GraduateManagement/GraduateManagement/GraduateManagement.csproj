@@ -254,6 +254,7 @@
     <Content Include="Views\School\Detail.cshtml" />
     <Content Include="Views\Teacher\directStudent.cshtml" />
     <Content Include="Views\Teacher\replyStudent.cshtml" />
+    <Content Include="Views\Academy\Detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="schoolUploads\" />

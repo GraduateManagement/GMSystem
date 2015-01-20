@@ -39,18 +39,20 @@ namespace GraduateManagement.Controllers
             newnotices.content = model.content;
 
             //Word.Document doc = null; //一会要记录word打开的文档
-            Stream fileStream = Request.Files["upload-doc"].InputStream;
-
-            if (fileStream.Length > 0)
+            if (Request.Files[0] != null)
             {
-                string fileName = DateTime.Now.ToString().Replace("/", ".").Replace(":", ".") + Path.GetFileName(Request.Files["upload-doc"].FileName);
-                int fileLength = Request.Files["upload-doc"].ContentLength;
-                //本地存放路径
-                string path = AppDomain.CurrentDomain.BaseDirectory + "schoolUploads/";
-                //将文件以文件名filename存放在path路径中
-                Request.Files["upload-doc"].SaveAs(Path.Combine(path, fileName));
-                newnotices.attachmentAddr = path + fileName;
-                newnotices.attachmentName = Request.Files["upload-doc"].FileName;
+                Stream fileStream = Request.Files[0].InputStream;
+
+             
+                    string fileName = DateTime.Now.ToString().Replace("/", ".").Replace(":", ".") + Path.GetFileName(Request.Files["upload-doc"].FileName);
+                    int fileLength = Request.Files["upload-doc"].ContentLength;
+                    //本地存放路径
+                    string path = AppDomain.CurrentDomain.BaseDirectory + "schoolUploads/";
+                    //将文件以文件名filename存放在path路径中
+                    Request.Files["upload-doc"].SaveAs(Path.Combine(path, fileName));
+                    newnotices.attachmentAddr = path + fileName;
+                    newnotices.attachmentName = Request.Files["upload-doc"].FileName;
+             
             }
             else
             {
@@ -59,7 +61,7 @@ namespace GraduateManagement.Controllers
             }
             db.notice_table.Add(newnotices);
             db.SaveChanges();
-            return RedirectToAction("/Home/Index");
+            return RedirectToAction("Index", "Home");
         }
 
         public ActionResult Detail(int id)

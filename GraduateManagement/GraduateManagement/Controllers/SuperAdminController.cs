@@ -7,9 +7,11 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using GraduateManagement.Models;
+using GraduateManagement.Attributes;
 
 namespace GraduateManagement.Controllers
 {
+    [AuthorityFilter]
     public class SuperAdminController : Controller
     {
         private SqlDbContext db = new SqlDbContext();

@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>@ViewBag.Title</h2>
+<h2 style ="font-family: 微软雅黑;">@ViewBag.Title</h2>
 
 <div>
     <hr />
@@ -50,7 +50,6 @@
             <dd>
                 请上传附件
             </dd>
-    </dl>
             using (Html.BeginForm("Uploads", "Student", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
                 @Html.AntiForgeryToken()
@@ -58,7 +57,7 @@
                 <div class="form-group">
                     <label class="col-md-2 control-label">上传附件</label>
                     <div class="col-md-10">
-                        <input type="file" name="upload-doc">
+                        <input type="file" id="upload-doc1" name="upload-doc" class="col-md-5" style="margin-top: 40px; margin-bottom: 40px; padding-top: 5px;">
                     </div>
                 </div>
                 <div class="form-group">
@@ -74,6 +73,6 @@
             <dd>
                 <a href=@Model.attachmentAddr>@fileName</a>
             </dd>
-    </dl>
-        }    
+        }
+    </dl>   
 </div>
