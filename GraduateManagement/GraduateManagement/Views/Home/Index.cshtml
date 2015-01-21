@@ -16,13 +16,13 @@
     {
         if (item.vital == true)
         {
-            @Html.ActionLink(item.title, "News", new { id = item.newsID }, new { @class = "col-md-5", style = "color:red;font-size: small" })
+            @Html.ActionLink(">" + item.title, "News", new { id = item.newsID }, new { @class = "col-md-5", style = "color:red;font-size:small;text-decoration:none;padding: 0px; margin: 0px; " })
         }
         else
         {
-            @Html.ActionLink(item.title, "News", new { id = item.newsID }, new { @class = "col-md-5", style = "color:black;font-size: small" })
+            @Html.ActionLink(">" + item.title, "News", new { id = item.newsID }, new { @class = "col-md-5", style = "color:black;font-size:small;text-decoration:none;padding: 0px; margin: 0px; " })
         }
-        <div class="col-md-3" style="font-size: small">@item.time</div>
+        <div class="col-md-3" style="font-size: small">@item.time.ToShortDateString()</div>
         <br />
     }
 </div>

@@ -1,7 +1,11 @@
 ﻿@using Microsoft.AspNet.Identity
+@using GraduateManagement.Models
 @if (Request.Cookies["userID"] != null)
 {
+    SqlDbContext db=new SqlDbContext();
     int role = Convert.ToInt32(Request.Cookies["userRole"].Value);
+    string accountNum = Request.Cookies["userName"].Value;
+    string name = db.user_table.Single(u => u.accountNum == accountNum).name;
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
         @Html.AntiForgeryToken()
@@ -9,25 +13,30 @@
         @{
             if (role == 1)//校教务处
             {
+                <li style="color: white; padding-top: 15px;">您好,@name 校务老师!</li>
                 <li>@Html.ActionLink("学院列表", "Index", "School", null, new { title = "Manage" })</li>
                 <li>@Html.ActionLink("写新闻", "writeNews", "School", null, new { title = "Manage" })</li>
             }
             else if (role == 2)//院教务处
             {
+                <li style="color: white; padding-top: 15px;">您好,@name 院务老师!</li>
                 <li>@Html.ActionLink("学生列表", "Index", "Academy", null, new { title = "Manage" })</li>
                 <li>@Html.ActionLink("添加学生", "addStudent", "Academy", null, new { title = "Manage" })</li>
             }
             else if (role == 3)//教师
             {
+                <li style="color: white; padding-top: 15px;">您好,@name 老师!</li>
                 <li>@Html.ActionLink("指导列表", "Direct", "Teacher", null, new { title = "Manage" })</li>
                 <li>@Html.ActionLink("答辩列表", "Reply", "Teacher", null, new { title = "Manage" })</li>
             }
             else if (role == 4)//学生
             {
+                <li style="color: white; padding-top: 15px;">您好,@name 同学!</li>
                 <li>@Html.ActionLink("个人中心", "Index", "Student", null, new { title = "Manage" })</li>
             }
             else if (role == 5)//超级管理员
             {
+                <li style="color: white; padding-top: 15px;">您好,@name 管理员!</li>
                 <li>@Html.ActionLink("管理人员", "Index", "SuperAdmin", null, new { title = "Manage" })</li>
             }
 }

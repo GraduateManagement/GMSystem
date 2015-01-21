@@ -39,7 +39,7 @@ namespace GraduateManagement.Controllers
             newnotices.content = model.content;
 
             //Word.Document doc = null; //一会要记录word打开的文档
-            if (Request.Files[0] != null)
+            if (Request.Files["upload-doc"] != null)
             {
                 Stream fileStream = Request.Files[0].InputStream;
 
